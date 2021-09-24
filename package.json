@@ -11,7 +11,10 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --debug",
-    "package": "electron-builder build --publish never"
+    "package": "electron-builder build --publish never",
+    "launch": "node samples/tcp/index.js",
+    "client": "node samples/tcp/client.js",
+    "signin":"node samples/httpclient/httpclient.js"
   },
   "mac": {
     "icon": "images/icon/icon.icns"
@@ -27,6 +30,7 @@
     "bulma": "^0.9.3",
     "ejs": "^3.1.6",
     "jquery": "^3.6.0",
-    "lowdb": "^3.0.0"
+    "lowdb": "^3.0.0",
+    "request": "^2.88.2"
   }
 }
