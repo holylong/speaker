@@ -1,0 +1,32 @@
+{
+  "name": "speaker",
+  "version": "1.0.0",
+  "description": "speaker desktop",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^14.0.1",
+    "electron-builder": "^22.11.7"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug",
+    "package": "electron-builder build --publish never"
+  },
+  "mac": {
+    "icon": "images/icon/icon.icns"
+  },
+  "win": {
+    "icon": "images/icon/icon512.ico"
+  },
+  "linux": {
+    "icon": "images/icon/icon512.ico"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.1",
+    "bulma": "^0.9.3",
+    "ejs": "^3.1.6",
+    "jquery": "^3.6.0",
+    "lowdb": "^3.0.0"
+  }
+}

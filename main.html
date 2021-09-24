@@ -1,0 +1,62 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title >Speaker 1.0</title>
+    <link rel="stylesheet" type="text/css" href="public/css/buttons.css"></link>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css"></link>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/> -->
+    <script src="public/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css"></link>
+    <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css"></link>
+  </head>
+
+  <body>
+    <h1 align="center">Speaker</h1>
+    <div class="container">
+      <div class="row">
+        <div class="btn_list">
+          <!-- btn-group-vertical -->
+          <button id="asr_view" type="button" class="btn btn-primary">asr</button>
+          <button type="button" class="btn btn-warning">user</button>
+          <!-- <a class="position-relative heightAuto" href="javascrpt:;"> -->
+            <!-- <img src="public/images/cat_btn_1.jpeg" >  
+            <img src="public/images/cat_btn_2.jpeg" >
+            <img src="public/images/cat_btn_3.webp" >
+            <img src="public/images/cat_btn_4.webp" > -->
+          <!-- </a> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="ictx_content">
+      <iframe src="asr.html" class="subhtml"></iframe>
+    </div>
+    <!-- https://hub.fastgit.org/thomascullen/voicebox -->
+    <!-- https://hub.fastgit.org/wulkano/Kap -->
+    <!-- https://hub.fastgit.org/hokein/electron-screen-recorder -->
+    <!-- https://hub.fastgit.org/fireship-io/223-electron-screen-recorder -->
+    <!-- https://hub.fastgit.org/daltonmenezes/electron-screen-recorder -->
+    <!-- https://hub.fastgit.org/chukitow/odin -->
+    <!-- https://hub.fastgit.org/skunight/desktop-recorder -->
+    <!-- We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>. -->
+
+    <!-- You can also require other files to run in this process -->
+
+    <div class="control_btn">
+      <button id="startBtn" class="button is-primary">Start</button>
+      <button id="stopBtn" class="button is-warning">Stop</button>
+      <button id="saveBtn" class="button is-info">Save as</button>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

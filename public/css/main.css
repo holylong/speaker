@@ -1,0 +1,58 @@
+html,body{
+    background: rgb(218, 214, 221);
+    padding: 5% 5%;
+    text-align: center;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
+    margin: auto;
+    /* max-width: 38rem; */
+    /* padding: 2rem; */
+    height: 100%;
+}
+/* .div{ 
+    margin:0 auto;
+    width:400px; 
+    height:100px; 
+    border:1px solid #F00;
+    text-align: center;
+}  */
+div.btn_list{
+    font-size: 0;
+    text-align: center;
+    float: left;
+    padding: 20px;
+    /* -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box; */
+    /* width: 320px; */
+    /* height: 50px; */
+}
+div.btn_list button{
+    width: 150px;
+    height: 50px;
+    /* display: block;
+    float: left;
+    align-content: center;*/
+    padding: 0px; 
+    margin: 2%;
+}
+/* .btn_list button{
+    width: 150px;
+    float: left;
+    display: block;
+    text-align: center;
+} */
+
+/* #ictx_content {
+    width: 1000px;
+} */
+
+#control_btn{
+    padding: 200px;
+    margin: 10%;
+    margin-top: 100px;
+}
+
+iframe.subhtml{
+    width: 1000px;
+    height: 500px;
+}
