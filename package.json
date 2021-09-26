@@ -14,7 +14,8 @@
     "package": "electron-builder build --publish never",
     "launch": "node samples/tcp/index.js",
     "client": "node samples/tcp/client.js",
-    "signin":"node samples/httpclient/httpclient.js"
+    "signin": "node samples/httpclient/httpclient.js",
+    "tcphttp": "node samples/httpclient/httputil-sample.js"
   },
   "mac": {
     "icon": "images/icon/icon.icns"
@@ -26,11 +27,14 @@
     "icon": "images/icon/icon512.ico"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "bootstrap": "^5.1.1",
     "bulma": "^0.9.3",
     "ejs": "^3.1.6",
     "jquery": "^3.6.0",
     "lowdb": "^3.0.0",
+    "node-schedule": "^2.0.0",
     "request": "^2.88.2"
   }
 }
