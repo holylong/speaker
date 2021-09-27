@@ -15,7 +15,9 @@
     "launch": "node samples/tcp/index.js",
     "client": "node samples/tcp/client.js",
     "signin": "node samples/httpclient/httpclient.js",
-    "tcphttp": "node samples/httpclient/httputil-sample.js"
+    "tcphttp": "node samples/httpclient/httputil-sample.js",
+    "chatroomc": "node samples/httpclient/chatroom_c.js",
+    "chatrooms": "node samples/httpclient/chatroom_s.js"
   },
   "mac": {
     "icon": "images/icon/icon.icns"
