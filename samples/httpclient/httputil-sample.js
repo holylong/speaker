@@ -74,7 +74,7 @@ client.on('data', function(data) {
         if(data.toString().indexOf(localHost) !== -1){
             peerId = data.toString().split("\r\n\r\n")[1].split(",")[1];
             console.log("current user:" + peerId);
-            client.end();
+            //client.end();
             //httpClient.selfWaitGet("/wait", "peer_id=" + peerId,  "", null);
             //var requestMessage = "GET " + "/wait" + '?' + "peer_id=" + peerId + " HTTP/1.1\r\n\r\n";
             //httpClient.hpSendData(requestMessage);

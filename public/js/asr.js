@@ -12,16 +12,16 @@ window.onload=function(){
     //         children.innerHTML = "<a href=\"#\" class=\"list-group-item\"> <h4 class=\"list-group-item-heading\"> index:" + i + "</h4> <p class=\"list-group-item-text\"> 我们提供 247 支持。 </p></a>";
     //     //})
     // }
-    for(var i = 0; i < 10; i++){
-        (function(i) {
-            setTimeout(function() {
-                //console.log(i);
-                var children = document.createElement('a');
-                groups.appendChild(children);
-                children.innerHTML = "<a href=\"#\" class=\"list-group-item\"> <h4 class=\"list-group-item-heading\"> index:" + i + "</h4> <p class=\"list-group-item-text\"> 我们提供 247 支持。 </p></a>";
-            }, (i + 1) * 1000);
-        })(i)
-    }
+    // for(var i = 0; i < 10; i++){
+    //     (function(i) {
+    //         setTimeout(function() {
+    //             //console.log(i);
+    //             var children = document.createElement('a');
+    //             groups.appendChild(children);
+    //             children.innerHTML = "<a href=\"#\" class=\"list-group-item\"> <h4 class=\"list-group-item-heading\"> index:" + i + "</h4> <p class=\"list-group-item-text\"> 我们提供 247 支持。 </p></a>";
+    //         }, (i + 1) * 1000);
+    //     })(i)
+    // }
 }
 
 // window.onload=(async function(){
