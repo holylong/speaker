@@ -38,6 +38,7 @@
     "lowdb": "^3.0.0",
     "node-schedule": "^2.0.0",
     "request": "^2.88.2",
+    "simple-peer": "^9.11.0",
     "wrtc": "^0.4.7"
   }
 }

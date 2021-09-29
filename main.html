@@ -12,8 +12,20 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css"></link>
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="public/js/main.js"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/> -->
-    <script src="public/js/main.js"></script>
+    <!-- <script type="text/javascript">
+        if(typeof require !== 'function'){
+          console.log("web env")
+          var script = document.createElement('script')
+          script.src = "bundle.js"
+          document.currentScript.parentNode.insertBefore(script, document.currentScript)
+        }
+        else{
+          console.log("electron env")
+          var speaker = require('public/js/main.js')()
+        }
+    </script> -->
     <link rel="stylesheet" type="text/css" href="public/css/main.css"></link>
     <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css"></link>
   </head>
