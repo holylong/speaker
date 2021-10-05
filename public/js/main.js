@@ -55,7 +55,7 @@ client.on('data', function(data) {
         }else{
             var sdp = data.toString().split("\r\n\r\n")[1];
             console.log(sdp);
-            //if(sdp.indexOf("offer") !== -1)
+            if(sdp.indexOf("offer") !== -1 || sdp.indexOf("candidate") !== -1)
                initReceiver(sdp);
             //console.log(data.toString())
             //data.toString.split("\r\n")
