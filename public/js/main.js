@@ -30,6 +30,7 @@ var HOST = '172.19.0.138';
 var PORT = 8888;
 var localHost = 'mac';
 var peerId = "";
+var toId = "";
 client.connect(PORT, HOST, function(){
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
 });
@@ -52,11 +53,21 @@ client.on('data', function(data) {
             //client.write(requestMessage);
             //触发事件some_event
             // emitter.emit("some_event");
-        }else{
+        }else if(data.toString().indexOf("200") !== -1){
             var sdp = data.toString().split("\r\n\r\n")[1];
-            console.log(sdp);
-            //if(sdp.indexOf("offer") !== -1)
+            //console.log(sdp);
+            if(sdp.indexOf("offer") !== -1){
                initReceiver(sdp);
+               console.log(sdp);
+
+               var list = data.toString().split("\r\n")
+               console.log(list)
+
+               toId = list[6].split(":")[1].trim()
+               console.log(toId)
+            }
+
+
             //console.log(data.toString())
             //data.toString.split("\r\n")
         }
@@ -67,7 +78,7 @@ client.on('data', function(data) {
 });
 
 client.on('end',function(){
-    console.log("exit");
+    //console.log("exit");
     client.end();
 });
 client.on('error',function(){
@@ -76,10 +87,10 @@ client.on('error',function(){
 });
 
 client.on('close', function() {
-    console.log('Connection closed');
+    //console.log('Connection closed');
     
     client.connect(PORT, HOST, function(){
-        console.log('CONNECTED TO: ' + HOST + ':' + PORT);
+        //console.log('CONNECTED TO: ' + HOST + ':' + PORT);
         httpClient.selfWaitGet("/wait", "peer_id=" + peerId,  "", null);
     });
 });
@@ -90,18 +101,34 @@ async function initRemoteStream(){
     peerConnection = await connectionClient.createConnection()
 }
 
-let peer = new Peer({initiator:true, stream:null, trickle:false})
+let peer = new Peer({initiator:false, config: { iceServers: [] }, trickle:false})
 
-peer.on('signal', function(data){
-    console.log("signal:" + data.toString())
+peer.on('signal', function(signal){
+    //console.log("signal:" + JSON.stringify(signal))
+    client.end();
+    client.connect(PORT, HOST, function(){
+        httpClient.selfPostSignal("/message", peerId, toId, JSON.stringify(signal))
+    });
 })
 
 peer.on('data', function(data){
-    console.log("data:" + data.toString())
+    console.log("data:" + JSON.stringify(data))
 })
 
 peer.on('stream', function(stream){
-    console.log("data:" + stream.toString())
+    console.log("stream:" + JSON.stringify(stream))
+    const videoElement = document.getElementById("localPreview")
+    if(videoElement !== null && stream !== null){
+        videoElement.srcObject = stream;
+        console.log("get stream ok");
+        videoElement.play();
+        videoElement.onloadedmetadata = e => {
+            videoElement.play();
+            console.log("play stream ok");
+            };
+    }else{
+        console.log("video element is null");
+    }
 })
 
 function initReceiver(sdp){
@@ -109,6 +136,7 @@ function initReceiver(sdp){
     const videoElement = document.getElementById("localPreview")
     if(videoElement !== null && peer.stream !== null){
         videoElement.srcObject = peer.stream;
+        console.log("get stream ok");
         videoElement.onloadedmetadata = e => {
             videoElement.play();
             };
