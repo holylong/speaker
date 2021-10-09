@@ -31,6 +31,9 @@ var PORT = 8888;
 var localHost = 'mac';
 var peerId = "";
 var toId = "";
+var signalOk = false;
+var signalGlobal = '';
+let peer = '';
 client.connect(PORT, HOST, function(){
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
 });
@@ -55,6 +58,7 @@ client.on('data', function(data) {
             // emitter.emit("some_event");
         }else if(data.toString().indexOf("200") !== -1){
             var sdp = data.toString().split("\r\n\r\n")[1];
+            //initLocalStream();
             if(sdp.indexOf("offer") !== -1){
            // console.log(sdp);
            // if(sdp.indexOf("offer") !== -1 || sdp.indexOf("candidate") !== -1)
@@ -90,10 +94,19 @@ client.on('error',function(){
 client.on('close', function() {
     //console.log('Connection closed');
     
-    client.connect(PORT, HOST, function(){
-        //console.log('CONNECTED TO: ' + HOST + ':' + PORT);
-        httpClient.selfWaitGet("/wait", "peer_id=" + peerId,  "", null);
-    });
+    if(signalOk !== true){
+        console.log("wait message");
+        client.connect(PORT, HOST, function(){
+            //console.log('CONNECTED TO: ' + HOST + ':' + PORT);
+            httpClient.selfWaitGet("/wait", "peer_id=" + peerId,  "", null);
+        });
+    }else{
+        console.log("signal message");
+        signalOk = false;
+        client.connect(PORT, HOST, function(){
+            httpClient.selfPostSignal("/message", peerId, toId, JSON.stringify(signalGlobal))
+        });
+    }
 });
 
 let peerConnection = null;
@@ -102,14 +115,28 @@ async function initRemoteStream(){
     peerConnection = await connectionClient.createConnection()
 }
 
-let peer = new Peer({initiator:false, config: { iceServers: [] }, trickle:false})
+function initReceiver(sdp){
+    peer.signal(sdp);
+    const videoElement = document.getElementById("localPreview")
+    if(videoElement !== null && peer.stream !== null){
+        videoElement.srcObject = peer.stream;
+        console.log("get stream ok");
+        videoElement.onloadedmetadata = e => {
+            videoElement.play();
+            };
+    }else{
+        console.log("video element is null");
+    }
+}
 
+//peer = new Peer({initiator:true, stream:stream, config: { iceServers: [] }, trickle:false});
+peer = new Peer({initiator:false, config: { iceServers: [] }, trickle:false});
+    
 peer.on('signal', function(signal){
     //console.log("signal:" + JSON.stringify(signal))
+    signalOk = true;
+    signalGlobal = signal;
     client.end();
-    client.connect(PORT, HOST, function(){
-        httpClient.selfPostSignal("/message", peerId, toId, JSON.stringify(signal))
-    });
 })
 
 peer.on('data', function(data){
@@ -132,18 +159,29 @@ peer.on('stream', function(stream){
     }
 })
 
-function initReceiver(sdp){
-    peer.signal(sdp);
-    const videoElement = document.getElementById("localPreview")
-    if(videoElement !== null && peer.stream !== null){
-        videoElement.srcObject = peer.stream;
-        console.log("get stream ok");
-        videoElement.onloadedmetadata = e => {
-            videoElement.play();
-            };
-    }else{
-        console.log("video element is null");
+async function initLocalStream(){
+    const constaints = {
+        audio :false,
+        // video: { 
+        //     deviceId: deviceId
+        // } 
+        // video : {
+        //     mandtory:{
+        //         width:1280,
+        //         height:720,
+        //         deviceId:deviceId
+        //     }
+        // }
+        video: {
+            mandatory: {
+              chromeMediaSource: 'desktop',
+            //   chromeMediaSourceId: source.id
+            }
+          }
     }
+    navigator.mediaDevices.getUserMedia(constaints).then(stream =>{
+        
+    });
 }
 
 async function initMedia(){
