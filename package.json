@@ -14,6 +14,7 @@
     "package": "electron-builder build --publish never",
     "launch": "node samples/tcp/index.js",
     "client": "node samples/tcp/client.js",
+    "wsclient": "node public/js/wsclient.js",
     "signin": "node samples/httpclient/httpclient.js",
     "tcphttp": "node samples/httpclient/httputil-sample.js",
     "chatroomc": "node samples/httpclient/chatroom_c.js",
@@ -34,11 +35,15 @@
     "bootstrap": "^5.1.1",
     "bulma": "^0.9.3",
     "ejs": "^3.1.6",
+    "goog": "^0.2.1",
+    "google-protobuf": "^3.18.1",
     "jquery": "^3.6.0",
     "lowdb": "^3.0.0",
     "node-schedule": "^2.0.0",
+    "protobufjs": "^6.11.2",
     "request": "^2.88.2",
     "simple-peer": "^9.11.0",
-    "wrtc": "^0.4.7"
+    "wrtc": "^0.4.7",
+    "ws": "^8.2.3"
   }
 }
