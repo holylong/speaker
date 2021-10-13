@@ -48,16 +48,6 @@ async function initRemoteStream(){
 
 function initReceiver(sdp){
     peer.signal(sdp);
-    const videoElement = document.getElementById("localPreview")
-    if(videoElement !== null && peer.stream !== null){
-        videoElement.srcObject = peer.stream;
-        console.log("init stream once");
-        videoElement.onloadedmetadata = e => {
-            videoElement.play();
-            };
-    }else{
-        console.log("video element is null");
-    }
 }
 
 //peer = new Peer({initiator:true, stream:stream, config: { iceServers: [] }, trickle:false});
