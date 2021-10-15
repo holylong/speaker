@@ -41,8 +41,8 @@ const runSocketIOSample = function() {
 
     function getParameterByName(name) {
         //var myUrl = "http://172.19.0.228:3001/?forward=true&simulcast=true&screen=true";
-        var myUrl = "http://172.19.0.228:3001/?forward=true";
-        //var myUrl = "https://172.19.0.228:3004/?forward=true&simulcast=true&screen=true";
+        //var myUrl = "http://172.19.0.228:3001/?forward=true";
+        var myUrl = "https://172.19.0.228:3004/?forward=true&simulcast=true&screen=true";
         var param = "?" + myUrl.split('?')[1];
         name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
@@ -174,7 +174,7 @@ const runSocketIOSample = function() {
                     let mediaStream;
                     var constants = new Owt.Base.StreamConstraints(audioConstraints, videoConstraints);
                     console.log("constants:" + JSON.stringify(constants));
-                    Owt.Base.MediaStreamFactory.createMediaStream().then(stream => {
+                    Owt.Base.MediaStreamFactory.createMediaStream(constants).then(stream => {
                         let publishOption;
                         if (simulcast) {
                             publishOption = {video:[
@@ -185,8 +185,7 @@ const runSocketIOSample = function() {
                         }
                         mediaStream = stream;
                         localStream = new Owt.Base.LocalStream(
-                            mediaStream, new Owt.Base.StreamSourceInfo(
-                                'mic', 'camera'));
+                            mediaStream, new Owt.Base.StreamSourceInfo('mic', 'camera'));
                         $('.local video').get(0).srcObject = stream;
                         conference.publish(localStream, publishOption).then(publication => {
                             publicationGlobal = publication;
