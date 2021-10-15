@@ -1,0 +1,16 @@
+{
+  "name": "sio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "starts": "node simple_server.js",
+    "startc": "node simple_client.js",
+    "startss": "node https_server.js",
+    "startsc": "node https_client.js"
+  },
+  "dependencies": {
+    "socket.io": "^4.3.0",
+    "socket.io-client": "^4.3.0"
+  }
+}
