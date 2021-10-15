@@ -1,0 +1,13 @@
+{
+  "name": "owtdemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug"
+  },
+  "dependencies": {
+    "electron": "^15.1.2"
+  }
+}
