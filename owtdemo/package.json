@@ -8,6 +8,7 @@
     "dev": "electron . --debug"
   },
   "dependencies": {
-    "electron": "^15.1.2"
+    "electron": "^15.1.2",
+    "grunt": "^1.4.1"
   }
 }

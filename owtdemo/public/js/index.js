@@ -57,6 +57,8 @@ const runSocketIOSample = function() {
     var subscribeForward = getParameterByName('forward') === 'true'?true:false;
     var isSelf = getParameterByName('self') === 'false'?false:true;
     conference = new Owt.Conference.ConferenceClient();
+    // conference = new Conference.ConferenceClient();
+    // conference = new ConferenceClient();
     function createResolutionButtons(stream, subscribeResolutionCallback) {
         let $p = $(`#${stream.id}resolutions`);
         if ($p.length === 0) {
@@ -168,7 +170,7 @@ const runSocketIOSample = function() {
                         // audioConstraintsForScreen
                         audioConstraints = new Owt.Base.AudioTrackConstraints(Owt.Base.AudioSourceInfo.SCREENCAST);
                         // videoConstraintsForScreen
-                        videoConstraints = new Owt.Base.VideoTrackConstraints(Owt.Base.VideoSourceInfo.SCREENCAST);
+                        videoConstraints = new Owt.Base.VideoTrackConstraints(Owt.Base.VideoSourceInfo.DESKTOP);
                     }
 
                     let mediaStream;
