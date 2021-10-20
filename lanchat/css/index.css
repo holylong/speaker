@@ -1,0 +1,38 @@
+html,body{
+    background: rgb(218, 214, 221);
+    padding: 5% 5%;
+    text-align: center;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
+    margin: auto;
+    /* max-width: 38rem; */
+    /* padding: 2rem; */
+    height: 100%;
+}
+/* .div{ 
+    margin:0 auto;
+    width:400px; 
+    height:100px; 
+    border:1px solid #F00;
+    text-align: center;
+}  */
+
+.lantitle{
+    font-size: 50px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+.lanspace{
+    height: 50px;
+}
+
+video {
+    width: 544px;
+    height: 306px;
+    background-color: #f0f5f5;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    box-shadow: 2px 5px 10px #e8e8e8;
+  }
+
+.list-group{
+    align-self: flex-start;
+}

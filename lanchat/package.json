@@ -1,0 +1,20 @@
+{
+  "name": "lanchat",
+  "version": "1.0.0",
+  "description": "lanchat is wlan p2p videochat program by electron",
+  "main": "index.js",
+  "repository": "https://github.com/holylong/lanchat",
+  "author": "bluedream",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug"
+  },
+  "dependencies": {
+    "boostrap": "^2.0.0",
+    "bootstrap": "^5.1.3",
+    "bulma": "^0.9.3",
+    "electron": "^15.2.0",
+    "nodejs-websocket": "^1.7.2"
+  }
+}
