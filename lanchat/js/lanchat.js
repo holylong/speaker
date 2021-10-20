@@ -2,8 +2,13 @@
 //find user in wlan
 
 window.onload=function(){
-    
 
+    //init local port
+    //scan lan port 
+    //load friends
+    //list ok
+    //call with other
+    
     var groups = document.getElementById("friends_content");
     if(groups == null){
         return;

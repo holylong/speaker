@@ -1,0 +1,9 @@
+{
+  "name": "winfly",
+  "version": "1.0.0",
+  "description": "screen cat ",
+  "main": "index.js",
+  "repository": "https://github.com/holylong/winfly",
+  "author": "bluedream",
+  "license": "MIT"
+}

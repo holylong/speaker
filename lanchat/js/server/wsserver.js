@@ -1,16 +1,17 @@
-var ws = require("nodejs-websocket")
+var WSocket = require("nodejs-websocket")
 
 
 class WsServer{
-    constructor(sock, port){
-        this.sock = sock;
+    constructor(port, url){
         this.port = port;
+        this.url = url;
     };
 
     selfInitServer(){
-        var server = wc.createServer(function(conn){
+        var server = WSocket.createServer(function(conn){
             conn.on("text", function(data){
                 console.log(data);
+                conn.send("hello client");
             });
             conn.on("close", function(code, reason){
 
@@ -21,4 +22,11 @@ class WsServer{
         }).listen(this.port)
         console.log("server start");
     }
+
+    selfSendMessage(message){
+        //this.sock.send(message);
+    }
 }
+
+
+module.exports = WsServer;
