@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^14.0.1",
+    "electron": "^15.3.1",
     "electron-builder": "^22.11.7"
   },
   "scripts": {

@@ -11,7 +11,8 @@ window.onload=function(){
     }
 }
 
-let ws = new WebSocket("ws://172.19.0.228:6655/hexrtc");
+//let ws = new WebSocket("ws://172.19.0.228:6655/hexrtc");
+let ws = new WebSocket("ws://192.168.1.3:6655/hexrtc");
 let peer = new Peer({initiator:false, config: { iceServers: [] }, trickle:false});
 var peerid = '';
 
