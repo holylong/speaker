@@ -5,6 +5,7 @@ var DataBean = require('./public/js/hexrtc_pb');
 var toastr = require("toastr");
 
 window.onload = function(){
+    document.getElementById("userid").value = "123456";
     document.getElementById("startBtn").onclick = () => {
         console.log("start btn click");
         startLogin();
@@ -93,9 +94,11 @@ peer.on('data', function(data){
 peer.on('stream', function(stream){
     console.log("stream:" + JSON.stringify(stream))
     const videoElement = document.getElementById("remotePreview")
+    var preHeight = videoElement.style.height;
     if(videoElement !== null && stream !== null){
         videoElement.srcObject = stream;
         console.log("get stream ok");
+        videoElement.style.height = preHeight;
         videoElement.play();
         videoElement.onloadedmetadata = e => {
             videoElement.play();

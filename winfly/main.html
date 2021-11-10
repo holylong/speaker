@@ -34,29 +34,29 @@
   </head>
 
   <body>
-    <h1 align="center">DesktopFly</h1>
+    <h1 align="center" style="size: 10; font-style: italic; color: blanchedalmond;">DesktopFly</h1>
 
     <!-- <div class="msg_container">
       状态:<label id="errormsg">启动成功</label>
     </div> -->
+    <div class="main_container">
+      <div class="container">
+        <video id="localPreview">localPreview</video>
+        <video id="remotePreview" controls="controls">remotePreview</video>
+      </div>
 
-    <div class="container">
-      <video id="localPreview"></video>
-      <video id="remotePreview"></video>
-    </div>
+      <div class="input_container">
+        用户ID: <input type="text" name="userid" id="userid"/>
+        远端ID: <input type="text" name="peerid" id="peerid"/>
+      </div>
 
-    <div class="input_container">
-      用户ID: <input type="text" name="userid" id="userid"/>
-      远端ID: <input type="text" name="peerid" id="peerid"/>
-    </div>
+      <div class="control_btn">
+        <button id="startBtn" class="button is-primary">登录</button>
+        <button id="callBtn" class="button is-warning">发送本地画面</button>
+        <button id="dropBtn" class="button is-info">挂断</button>
+      </div>
+      <!-- <script src="renderer.js"></script> -->
 
-
-
-    <div class="control_btn">
-      <button id="startBtn" class="button is-primary">登录</button>
-      <button id="callBtn" class="button is-warning">发送本地画面</button>
-      <button id="dropBtn" class="button is-info">挂断</button>
-    </div>
-    <!-- <script src="renderer.js"></script> -->
+  </div>
   </body>
 </html>
