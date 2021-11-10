@@ -1,0 +1,62 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'">
+    <title >DesktopFly 1.0</title>
+    <link rel="stylesheet" type="text/css" href="public/css/buttons.css"></link>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css"></link>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="public/js/main.js"></script> -->
+    <script type="text/javascript" src="public/js/wsmain.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/> -->
+    <!-- <script type="text/javascript">
+        if(typeof require !== 'function'){
+          console.log("web env")
+          var script = document.createElement('script')
+          script.src = "bundle.js"
+          document.currentScript.parentNode.insertBefore(script, document.currentScript)
+        }
+        else{
+          console.log("electron env")
+          var speaker = require('public/js/main.js')()
+        }
+    </script> -->
+    <link rel="stylesheet" type="text/css" href="public/css/main.css"></link>
+    <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css"></link>
+    <link href="node_modules/toastr/build/toastr.min.css" rel="stylesheet"/>
+    <script src="node_modules/toastr/build/toastr.min.js"></script>
+  </head>
+
+  <body>
+    <h1 align="center">DesktopFly</h1>
+
+    <!-- <div class="msg_container">
+      状态:<label id="errormsg">启动成功</label>
+    </div> -->
+
+    <div class="container">
+      <video id="localPreview"></video>
+      <video id="remotePreview"></video>
+    </div>
+
+    <div class="input_container">
+      用户ID: <input type="text" name="userid" id="userid"/>
+      远端ID: <input type="text" name="peerid" id="peerid"/>
+    </div>
+
+
+
+    <div class="control_btn">
+      <button id="startBtn" class="button is-primary">登录</button>
+      <button id="callBtn" class="button is-warning">发送本地画面</button>
+      <button id="dropBtn" class="button is-info">挂断</button>
+    </div>
+    <!-- <script src="renderer.js"></script> -->
+  </body>
+</html>

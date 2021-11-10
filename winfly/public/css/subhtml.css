@@ -1,0 +1,25 @@
+body{
+    background: rgb(124, 115, 133);
+    padding: 5% 5%;
+    margin: 0;
+    text-align: center;
+    height: 100%;
+}
+
+div.icon_list{
+    font-size: 0;
+    float: left;
+    padding: 20px;
+    text-align: center;
+}
+
+div.icon_list button{
+    width: 150px;
+    height: 50px;
+    display: block;
+    float: left;
+    text-align: center;
+    color: rgb(42, 153, 187);
+    border:2px solid;
+    border-radius:25px;
+}

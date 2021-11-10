@@ -5,5 +5,27 @@
   "main": "index.js",
   "repository": "https://github.com/holylong/winfly",
   "author": "bluedream",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "bootstrap": "^5.1.1",
+    "bulma": "^0.9.3",
+    "ejs": "^3.1.6",
+    "goog": "^0.2.1",
+    "google-protobuf": "^3.18.1",
+    "jquery": "^3.6.0",
+    "lowdb": "^3.0.0",
+    "node-schedule": "^2.0.0",
+    "protobufjs": "^6.11.2",
+    "request": "^2.88.2",
+    "simple-peer": "^9.11.0",
+    "toastr": "^2.1.4",
+    "wrtc": "^0.4.7",
+    "ws": "^8.2.3"
+  }
 }
