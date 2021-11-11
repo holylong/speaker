@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dev": "electron . --debug"
+    "dev": "electron . --debug",
+    "simple-datachannel":"node example/simple-datachannel.js",
+    "simple-media":"node example/simple-media.js"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
