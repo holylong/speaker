@@ -82,12 +82,12 @@ ws.on('message', function incomming(message){
     if(replydlg.getType() === DataBean.Dialog.DialogType.TRANSFER){
         var msgsig = replydlg.getMedia();
 
-        if(msgsig.indexOf("offer") >= 0){
+        if(msgsig.indexOf("offer") >= 0 && JSON.parse(msgsig).data.type == "offer"){
             console.log(msgsig);
             var sdp = JSON.stringify(JSON.parse(msgsig).data);
             initReceiver(sdp);
             peerid = replydlg.getUserid();
-        }else if(msgsig.indexOf("answer") >= 0){
+        }else if(msgsig.indexOf("answer") >= 0 && JSON.parse(msgsig).data.type == "answer"){
             var sdp = JSON.stringify(JSON.parse(msgsig).data);
             initSender(sdp);
         }
@@ -230,7 +230,8 @@ async function initMedia(){
     }).then(()=>{
         let deviceId = exArray[exArray.length - 1];
         const constaints = {
-            audio :false,
+            audio :true,
+            video:true
             // video: { 
             //     deviceId: deviceId
             // } 
@@ -241,12 +242,12 @@ async function initMedia(){
             //         deviceId:deviceId
             //     }
             // }
-            video: {
-                mandatory: {
-                  chromeMediaSource: 'desktop',
-                //   chromeMediaSourceId: source.id
-                }
-              }
+            // video: {
+            //     mandatory: {
+            //       chromeMediaSource: 'desktop',
+            //     //   chromeMediaSourceId: source.id
+            //     }
+            //   }
         }
         navigator.mediaDevices.getUserMedia(constaints).then(stream =>{
             const videoElement = document.getElementById("localPreview")
