@@ -68,10 +68,70 @@ function sendOffer(sdp){
 //let ws = new WebSocket("ws://172.19.0.228:6655/hexrtc");
 //let ws = new ReconnectingWebSocket("ws://192.168.1.3:6655/hexrtc");
 let ws = new WebSocket("ws://192.168.1.3:6655/hexrtc");
-let peer1 = new Peer({initiator:false, config: { iceServers: [] }, trickle:false});
+
 var peer2 = "";
 var peerid = -1;
 var userid = '';
+
+function initLocalPeer(sdp){
+    let peer1 = new Peer({initiator:false, config: { iceServers: [] }, trickle:false});
+
+    //应用远端sdp消息
+    function initReceiver(sdp){
+        console.log("initReceiver sdp:" + sdp);
+        if(peer1.destroyed){
+            console.log("===>> reinit peer1 ok");
+            //peer1 = new Peer({initiator:false, config: { iceServers: [] }, trickle:false});
+        }
+        peer1.signal(sdp);
+    }
+
+    initReceiver(sdp);
+
+    peer1.on('signal', function(signal){
+        //var sdp = JSON.stringify(signal);
+    
+        var mediasdp = { "type":"chat-signal", "data":signal};
+    
+        console.log("peer1 signal:" + JSON.stringify(mediasdp))
+        var msgdlg = new DataBean.Dialog();
+        msgdlg.setUserid(userid);
+        console.log("enum:" + DataBean.Dialog.DialogType.TRANSFER)
+        msgdlg.setType(DataBean.Dialog.DialogType.TRANSFER);
+        msgdlg.setPassword("asd");
+        msgdlg.setMedia(JSON.stringify(mediasdp))
+        msgdlg.setPeerid(peerid);
+        var bf = msgdlg.serializeBinary();
+        ws.send(bf);
+    })
+    
+    peer1.on('data', function(data){
+        console.log("peer1 data:" + JSON.stringify(data))
+    })
+    
+    peer1.on('error', function(message){
+        console.log("peer1 error:" + message);
+    })
+    
+    peer1.on('stream', function(stream){
+        console.log("peer1 stream:" + JSON.stringify(stream))
+        const videoElement = document.getElementById("remotePreview")
+        var preHeight = videoElement.style.height;
+        if(videoElement !== null && stream !== null){
+            videoElement.srcObject = stream;
+            console.log("get stream ok");
+            videoElement.style.height = preHeight;
+            videoElement.play();
+            videoElement.onloadedmetadata = e => {
+                videoElement.play();
+                console.log("play stream ok");
+                toastr.info("recv remote stream ok");
+                };
+        }else{
+            console.log("video element is null");
+        }
+    })
+}
 
 ws.on('open', function open(){
     toastr.info('connect server:' + "ws://192.168.1.3:6655/hexrtc" + " ok!")
@@ -85,7 +145,8 @@ ws.on('message', function incomming(message){
         if(msgsig.indexOf("offer") >= 0 && JSON.parse(msgsig).data.type == "offer"){
             console.log(msgsig);
             var sdp = JSON.stringify(JSON.parse(msgsig).data);
-            initReceiver(sdp);
+            //initReceiver(sdp);
+            initLocalPeer(sdp);
             peerid = replydlg.getUserid();
         }else if(msgsig.indexOf("answer") >= 0 && JSON.parse(msgsig).data.type == "answer"){
             var sdp = JSON.stringify(JSON.parse(msgsig).data);
@@ -146,12 +207,6 @@ ws.onclose = disConnect;
 //     console.log('closed....');
 // };
 
-//应用远端sdp消息
-function initReceiver(sdp){
-    console.log("initReceiver sdp:" + sdp);
-    peer1.signal(sdp);
-}
-
 function initSender(sdp){
     console.log("initSender sdp:" + sdp);
     peer2.signal(sdp);
@@ -174,49 +229,6 @@ function startLogin(){
 
 //peer = new Peer({initiator:true, stream:stream, config: { iceServers: [] }, trickle:false});
     
-peer1.on('signal', function(signal){
-    //var sdp = JSON.stringify(signal);
-
-    var mediasdp = { "type":"chat-signal", "data":signal};
-
-    console.log("peer1 signal:" + JSON.stringify(mediasdp))
-    var msgdlg = new DataBean.Dialog();
-    msgdlg.setUserid(userid);
-    console.log("enum:" + DataBean.Dialog.DialogType.TRANSFER)
-    msgdlg.setType(DataBean.Dialog.DialogType.TRANSFER);
-    msgdlg.setPassword("asd");
-    msgdlg.setMedia(JSON.stringify(mediasdp))
-    msgdlg.setPeerid(peerid);
-    var bf = msgdlg.serializeBinary();
-    ws.send(bf);
-})
-
-peer1.on('data', function(data){
-    console.log("peer1 data:" + JSON.stringify(data))
-})
-
-peer1.on('error', function(message){
-    console.log("peer1 error:" + message);
-})
-
-peer1.on('stream', function(stream){
-    console.log("peer1 stream:" + JSON.stringify(stream))
-    const videoElement = document.getElementById("remotePreview")
-    var preHeight = videoElement.style.height;
-    if(videoElement !== null && stream !== null){
-        videoElement.srcObject = stream;
-        console.log("get stream ok");
-        videoElement.style.height = preHeight;
-        videoElement.play();
-        videoElement.onloadedmetadata = e => {
-            videoElement.play();
-            console.log("play stream ok");
-            toastr.info("recv remote stream ok");
-            };
-    }else{
-        console.log("video element is null");
-    }
-})
 
 async function initMedia(){
     console.log("start voice")
